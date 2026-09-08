@@ -1,0 +1,10 @@
+{
+  "description": "Transforms user prompts into polished, professional text using an intuitive interface, enhancing communication for writers and professionals.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}

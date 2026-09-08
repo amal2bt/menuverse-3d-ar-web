@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700&display=swap');
+@import 'tailwindcss';
+
+@theme {
+  --font-display: 'DM Sans', sans-serif;
+  --font-body: 'Outfit', sans-serif;
+
+  --color-brand: #FF6B00;
+  --color-brand-dark: #E05A00;
+  --color-brand-light: #FFF0E6;
+}
+
+html, body, #root {
+  height: 100%;
+  font-family: 'Outfit', sans-serif;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+}
+*:hover {
+  scrollbar-color: #e5e5e5 transparent;
+}
