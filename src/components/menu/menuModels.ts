@@ -34,6 +34,22 @@ export const AR_MODELS: ArModelConfig[] = [
     price: "$24.00"
   },
 
+  {
+    id: "burger",
+    name: "Classic Cheeseburger",
+    category: "main-dishes",
+    glb: "/dist/models/burger.glb",
+    usdz: "/dist/models/burger.usdz",
+    price: "$16.00"
+  },
+{
+  id: "hotdog",
+  name: "Grilled Hot Dog",
+  category: "main-dishes",
+  glb: "/dist/models/Realistic_Hotdogs_AR.glb",
+  usdz: "/dist/models/Realistic_Hotdogs_AR.usdz",
+  price: "$14.00"
+},
   // --- DESSERTS ---
   {
     id: "ice-cream",
@@ -43,12 +59,14 @@ export const AR_MODELS: ArModelConfig[] = [
     usdz: "/dist/models/ice_cream_sundae_AR.usdz",
     price: "$9.00"
   },
+ 
   {
-    id: "cake",
-    name: "Lava Cake",
+    id: "donut",
+    name: "Pink Sprinkle Donut",
     category: "desserts",
-    glb: "https://polyfork.dev/cdn/cake-stand-ee7396.glb",
-    price: "$8.50"
+    glb: "/dist/models/donut.glb",
+    usdz: "/dist/models/Realistic_Donut_With_Plate.usdz",
+    price: "$8.00"
   },
 
   // --- DRINKS ---
