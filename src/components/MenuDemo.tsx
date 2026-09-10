@@ -1,7 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Move3d } from "lucide-react";
-import { getModelViewer } from "../model-viewer-utils";
+import MenuViewer3D from "./menu/MenuViewer3D";
+import ARQRCodeModal from "./menu/ARQRCodeModal";
+import { buildArUrl } from "./menu/menuModels";
 
 type Dish = {
   id: string;
@@ -24,7 +26,7 @@ const menuData: Dish[] = [
     desc: "Hand-stretched dough, black winter truffle, mozzarella di bufala, San Marzano tomato sauce.",
     price: "$40 · AED 90",
     model: "/dist/models/pizza_modern_plate1.glb",
-    iosModel: "/dist/models/finalpizza.usdz",
+    iosModel: "/models/finalpizza.usdz",
     fallbackImg: "https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=800",
   },
   // src/components/MenuDemo.tsx
@@ -37,7 +39,7 @@ const menuData: Dish[] = [
     name: "Smash Burger",
     desc: "Double smashed beef patties, melted cheddar, grilled onions, house sauce, brioche bun.",
     price: "$52 · AED 165",
-    model: "/models/burger.glb", // Points to public/models/burger.glb
+    model: "https://polyfork.dev/cdn/hamburger-060fd6.glb",
     iosModel: "/models/hamburger2.usdz",
     fallbackImg: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=800",
   },
@@ -50,7 +52,7 @@ const menuData: Dish[] = [
     name: "Donut",
     desc: "Chef&apos;s curated 8-piece premium nigiri, bluefin tuna, Hokkaido scallop, fresh wasabi.",
     price: "$75 · AED 245",
-    model: "/public/models/Cupcake by Quaternius - XL70IUDIrZ.glb",
+    model: "https://polyfork.dev/cdn/bread-loaf-0e0ab5.glb",
     iosModel: "/models/sushi.usdz",
     fallbackImg: "https://images.unsplash.com/photo-1579871494447-9811cf80d66c?q=80&w=800",
   },
@@ -61,7 +63,7 @@ const menuData: Dish[] = [
     name: "Donut",
     desc: "Squid ink arborio rice, wild caught seafood mix, garlic butter, parmesan crisp.",
     price: "$42 · AED 140",
-    model: "/public/models/Donut by Quaternius - UQRRrsP3wj.glb",
+    model: "https://polyfork.dev/cdn/fried-egg-bdcd3f.glb",
     iosModel: "/models/risotto.usdz",
     fallbackImg: "https://images.unsplash.com/photo-1633964913295-ceb43826e7c9?q=80&w=800",
   },
@@ -134,80 +136,43 @@ function SlideList({ dishes, active, onSelect }: { dishes: Dish[]; active: Dish;
 }
 
 function ThreeDStage({ dish }: { dish: Dish }) {
-  const [showPoster, setShowPoster] = useState(true);
-
-  useEffect(() => {
-    setShowPoster(true);
-  }, [dish.id]);
-
-  function handleAR() {
-    const el = getModelViewer();
-    if (el?.canActivateAR) el.activateAR();
-  }
+  const [showQr, setShowQr] = useState(false);
 
   return (
     <div className="relative bg-[#F5F2EB] rounded-3xl min-h-[400px] flex items-center justify-center p-8 shadow-inner overflow-hidden">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.7),transparent_70%)] pointer-events-none" />
 
       <span className="absolute left-4 top-4 z-20 bg-white/80 backdrop-blur-md text-[11px] font-bold tracking-widest text-slate-500 px-3 py-1.5 rounded-full border border-slate-200/50 shadow-sm">
-        DRAG • ZOOM
+        DRAG • ZOOM • 360°
       </span>
 
-      <div className="relative w-full h-full min-h-[320px] z-10">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={dish.id}
-            initial={{ opacity: 0, scale: 0.96 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.97 }}
-            transition={{ duration: 0.3, ease: "easeOut" }}
-            className="w-full h-full flex items-center justify-center"
-          >
-            {/* Graceful fallback: dish photo over the warm cream canvas, used as
-                poster while the local GLB loads and if the GLB is missing (404). */}
-            <model-viewer
-              src={dish.model}
-              ios-src={dish.iosModel}
-              alt={`${dish.name} 3D model`}
-              camera-controls
-              auto-rotate
-              auto-rotate-delay="600"
-              rotation-per-second="20deg"
-              shadow-intensity="1.2"
-              exposure="0.95"
-              environment-image="neutral"
-              ar
-              ar-modes="webxr scene-viewer quick-look"
-              loading="lazy"
-              poster={dish.fallbackImg}
-              reveal="auto"
-              style={{ width: "100%", height: "360px" }}
-              className="w-full h-full"
-              onLoad={() => setShowPoster(false)}
-              onError={() => setShowPoster(true)}
-            >
-              {showPoster && (
-                <img
-                  slot="poster"
-                  src={dish.fallbackImg}
-                  alt={dish.name}
-                  className="w-full h-full object-cover rounded-3xl"
-                />
-              )}
-            </model-viewer>
-          </motion.div>
-        </AnimatePresence>
+      <div className="relative z-10 w-full min-h-[320px]">
+        <MenuViewer3D
+          key={dish.id}
+          src={dish.model}
+          name={dish.name}
+          autoRotate
+          height={340}
+          className="w-full"
+        />
       </div>
 
       <button
         type="button"
-        onClick={handleAR}
+        onClick={() => setShowQr(true)}
         aria-label="View on table in AR"
         className="absolute right-4 bottom-4 z-20 flex items-center gap-2 bg-[#FF6B00] hover:bg-[#e05e00] text-white text-xs font-semibold px-4 py-2.5 rounded-xl shadow-md transition-transform active:scale-95"
       >
         <Move3d size={15} />
         View in AR
       </button>
+
+      <ARQRCodeModal
+        open={showQr}
+        onClose={() => setShowQr(false)}
+        url={buildArUrl(dish.id)}
+        label={dish.id.toUpperCase()}
+      />
     </div>
   );
 }

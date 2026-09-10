@@ -17,6 +17,9 @@ declare module "react" {
         "auto-rotate-delay"?: string;
         "rotation-per-second"?: string;
         "ar-modes"?: string;
+        "ar-scale"?: string;
+        "ar-placement"?: string;
+        "camera-orbit"?: string;
         loading?: string;
         reveal?: string;
         poster?: string;

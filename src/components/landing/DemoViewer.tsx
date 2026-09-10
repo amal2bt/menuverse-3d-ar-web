@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Move3d, ScanLine, Flame, X } from "lucide-react";
+import { Move3d, ScanLine, Flame } from "lucide-react";
 import { useLanguage } from "../../context/LanguageContext";
+import ARQRCodeModal from "../menu/ARQRCodeModal";
+import { buildArUrl } from "../menu/menuModels";
 
 type TastingDish = {
   id: string;
@@ -27,7 +29,7 @@ const TASTING_DISHES: TastingDish[] = [
     priceAED: "AED 90",
     calories: "820 kcal",
     model: "/dist/models/pizza_modern_plate1.glb",
-    iosModel: "/dist/models/finalpizza.usdc",
+    iosModel: "/dist/models/finalpizza.usdz",
   },
   {
     id: "burger",
@@ -38,7 +40,7 @@ const TASTING_DISHES: TastingDish[] = [
     priceTRY: "₺1.250",
     priceAED: "AED 165",
     calories: "940 kcal",
-    model: "https://polyfork.dev/cdn/hamburger-060fd6.glb",
+    model: "",
   },
   {
     id: "sushi",
@@ -49,7 +51,7 @@ const TASTING_DISHES: TastingDish[] = [
     priceTRY: "₺1.890",
     priceAED: "AED 245",
     calories: "610 kcal",
-    model: "/dist/models/REALISTIC_SUSHI_AR3.glb",
+    model: "https://polyfork.dev/cdn/fried-egg-bdcd3f.glb",
   },
 ];
 
@@ -242,55 +244,13 @@ export default function DemoViewer() {
         </motion.div>
       </div>
 
-      {/* ─── AR Desktop QR Modal ─── */}
-      <AnimatePresence>
-        {showArModal && (
-          <>
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setShowArModal(false)}
-              className="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4"
-            >
-              <motion.div
-                initial={{ opacity: 0, scale: 0.9, y: 20 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.9, y: 20 }}
-                onClick={(e) => e.stopPropagation()}
-                className="relative bg-white dark:bg-slate-900 rounded-3xl p-8 max-w-sm w-full text-center shadow-2xl"
-              >
-                <button
-                  onClick={() => setShowArModal(false)}
-                  aria-label="Close"
-                  className="absolute top-4 right-4 p-2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 hover:bg-black/5 rounded-xl"
-                >
-                  <X size={18} />
-                </button>
-                <div className="w-36 h-36 mx-auto rounded-2xl bg-slate-100 dark:bg-slate-800 flex items-center justify-center mb-5">
-                  <QrCodeIcon />
-                </div>
-                <h3 className="font-display text-lg font-bold text-slate-900 dark:text-slate-50">
-                  {t("demo.qrTitle")}
-                </h3>
-                <p className="text-sm text-slate-500 dark:text-slate-400 mt-2">{t("demo.qrDesc")}</p>
-                <p className="text-xs text-slate-400 mt-4 font-mono tracking-widest">{active.id.toUpperCase()} · AR</p>
-              </motion.div>
-            </motion.div>
-          </>
-        )}
-      </AnimatePresence>
+      {/* ─── AR QR Code Modal (scannable on mobile) ─── */}
+      <ARQRCodeModal
+        open={showArModal}
+        onClose={() => setShowArModal(false)}
+        url={buildArUrl(active.id)}
+        label={active.id.toUpperCase()}
+      />
     </section>
-  );
-}
-
-function QrCodeIcon() {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" className="w-20 h-20 text-slate-700 dark:text-slate-300" aria-hidden>
-      <rect x="3" y="3" width="7" height="7" rx="1" stroke="currentColor" strokeWidth="1.6" />
-      <rect x="14" y="3" width="7" height="7" rx="1" stroke="currentColor" strokeWidth="1.6" />
-      <rect x="3" y="14" width="7" height="7" rx="1" stroke="currentColor" strokeWidth="1.6" />
-      <path d="M14 14h3v3h-3zM18 18h3v3h-3zM18 14h2M21 21v-1M14 21h2" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
-    </svg>
   );
 }

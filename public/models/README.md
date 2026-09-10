@@ -5,22 +5,19 @@ Menuverse landing page and the 3D menu demo.
 
 ## Expected Files
 
-Once real restaurant models are available, place them here and update the paths
-in `src/components/landing/DemoViewer.tsx` (and `src/components/MenuDemo.tsx`):
+The AR system (QR → `/ar-view`) looks up each dish in
+`src/components/menu/menuModels.ts`. Pizza is wired to the local `realistic_pizza.glb`;
+the iOS USDZ is expected at `finalpizza.usdz` (drop the file here, or update the
+`usdz` field in `menuModels.ts`).
 
-| Dish             | GLB (Android/Web)    | USDZ (iOS AR)          |
-| ---------------- | -------------------- | ---------------------- |
-| Truffle Pizza    | `pizza.glb`          | `pizza.usdz`           |
-| Wagyu Burger     | `hamburger2.glb`     | `hamburger2.usdz`      |
-| Omakase Sushi    | `sushi.glb`          | `sushi.usdz`           |
-| Black Risotto    | `risotto.glb`        | `risotto.usdz`         |
-| Lava Cake        | `cake.glb`           | `cake.usdz`            |
+| Dish             | GLB (Android/Web)             | USDZ (iOS AR)      |
+| ---------------- | ----------------------------- | ------------------ |
+| Truffle Pizza    | `realistic_pizza.glb` ✅      | `finalpizza.usdz`  |
 
 ## Current State
 
-No local `.glb`/`.usdz` files are present yet. The interactive demo currently
-loads **verified-working, hotlinkable, CORS-open placeholder GLBs** from the
-Polyfork CDN so the 3D viewer operates immediately:
+The interactive demo loads verified-working, hotlinkable, CORS-open placeholder
+GLBs from the Polyfork CDN for dishes that do not yet have local assets:
 
 - `https://polyfork.dev/cdn/pizza-slice-ddfb9d.glb`
 - `https://polyfork.dev/cdn/hamburger-060fd6.glb`
