@@ -26,7 +26,8 @@ const TASTING_DISHES: TastingDish[] = [
     priceTRY: "₺680",
     priceAED: "AED 90",
     calories: "820 kcal",
-    model: "https://polyfork.dev/cdn/pizza-slice-ddfb9d.glb",
+    model: "/dist/models/pizza_modern_plate1.glb",
+    iosModel: "/dist/models/finalpizza.usdc",
   },
   {
     id: "burger",
@@ -48,7 +49,7 @@ const TASTING_DISHES: TastingDish[] = [
     priceTRY: "₺1.890",
     priceAED: "AED 245",
     calories: "610 kcal",
-    model: "https://polyfork.dev/cdn/fried-egg-bdcd3f.glb",
+    model: "/dist/models/REALISTIC_SUSHI_AR3.glb",
   },
 ];
 

@@ -23,21 +23,26 @@ const menuData: Dish[] = [
     name: "Truffle Pizza",
     desc: "Hand-stretched dough, black winter truffle, mozzarella di bufala, San Marzano tomato sauce.",
     price: "$40 · AED 90",
-    model: "/public/models/Pizza by Quaternius - XmmG0uImLL.glb"
-    iosModel: "/models/pizza.usdz",
+    model: "/dist/models/pizza_modern_plate1.glb",
+    iosModel: "/dist/models/finalpizza.usdz",
     fallbackImg: "https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=800",
   },
+  // src/components/MenuDemo.tsx
+
+  // ... other items
   {
     id: "burger",
     number: "02",
     category: "SECONDO",
-    name: "Wagyu Burger",
-    desc: "A5 Japanese Wagyu beef, caramelized onions, smoked truffle mayo, artisan brioche bun.",
+    name: "Smash Burger",
+    desc: "Double smashed beef patties, melted cheddar, grilled onions, house sauce, brioche bun.",
     price: "$52 · AED 165",
-    model: "https://polyfork.dev/cdn/hamburger-060fd6.glb",
+    model: "/models/burger.glb", // Points to public/models/burger.glb
     iosModel: "/models/hamburger2.usdz",
     fallbackImg: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=800",
   },
+  // ... other items
+
   {
     id: "Cupcake",
     number: "03",
