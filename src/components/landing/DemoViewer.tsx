@@ -148,7 +148,7 @@ export default function DemoViewer() {
               <div className="relative bg-[#F5F2EB] dark:bg-slate-800/70 rounded-3xl min-h-[380px] flex items-center justify-center p-6 shadow-inner overflow-hidden">
 
                 {/* Drag / Zoom badge */}
-                <span className="absolute left-4 top-4 z-20 bg-white/80 dark:bg-slate-900/70 backdrop-blur-md text-[10px] font-bold tracking-widest text-slate-500 px-3 py-1.5 rounded-full border border-slate-200/50 shadow-sm">
+                <span className="absolute left-4 top-4 z-20 bg-white/80 dark:bg-slate-900/70 backdrop-blur-md text-[10px] font-bold tracking-widest text-slate-500 px-3 py-1.5 rounded-full border border-slate-200/50 shadow-sm pointer-events-none">
                   {t("demo.drag")}
                 </span>
 
@@ -176,9 +176,19 @@ export default function DemoViewer() {
                       ar-modes="webxr scene-viewer quick-look"
                       style={{ width: "100%", height: "340px" }}
                       onLoad={() => setLoaded(true)}
-                    />
+                    >
+                      {/* Native AR Trigger Button for mobile/AR Quick Look */}
+                      <button
+                        slot="ar-button"
+                        className="absolute left-1/2 -translate-x-1/2 bottom-4 z-20 flex items-center gap-2 bg-[#FF6B00] hover:bg-[#E05A00] text-white text-xs font-semibold px-5 py-2.5 rounded-xl shadow-md transition-transform active:scale-95 cursor-pointer"
+                      >
+                        <Move3d size={14} />
+                        <span>View in your space</span>
+                      </button>
+                    </model-viewer>
+
                     {!loaded && (
-                      <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
                         <span className="animate-pulse text-[#FF6B00]">
                           <ScanLine size={30} />
                         </span>
@@ -187,13 +197,14 @@ export default function DemoViewer() {
                   </motion.div>
                 </AnimatePresence>
 
-                {/* Floating bottom action */}
+                {/* Fallback button for Desktop (opens QR modal) */}
                 <button
                   onClick={handleShowOnTable}
-                  className="absolute left-1/2 -translate-x-1/2 bottom-4 z-20 flex items-center gap-2 bg-[#FF6B00] hover:bg-[#E05A00] text-white text-xs font-semibold px-5 py-2.5 rounded-xl shadow-md transition-transform active:scale-95"
+                  className="absolute right-4 top-4 z-20 flex items-center gap-1.5 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md hover:bg-white text-slate-700 dark:text-slate-200 text-[11px] font-semibold px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 shadow-sm transition-all"
+                  title="Scan QR Code for Mobile AR"
                 >
-                  <Move3d size={14} />
-                  {t("demo.showOnTable")}
+                  <ScanLine size={13} className="text-[#FF6B00]" />
+                  <span>QR Code</span>
                 </button>
               </div>
             </div>
@@ -230,11 +241,12 @@ export default function DemoViewer() {
                     {t("demo.addToOrder")}
                   </button>
 
-                  {/* Secondary action: View in AR */}
+                  {/* Secondary action: Scan QR for Mobile AR */}
                   <button
                     onClick={handleShowOnTable}
-                    className="w-full mt-3 bg-transparent text-[#FF6B00] hover:bg-[#FF6B00]/8 border border-[#FF6B00]/30 font-semibold text-sm py-3 rounded-full transition-colors"
+                    className="w-full mt-3 bg-transparent text-[#FF6B00] hover:bg-[#FF6B00]/8 border border-[#FF6B00]/30 font-semibold text-sm py-3 rounded-full transition-colors flex items-center justify-center gap-2"
                   >
+                    <ScanLine size={16} />
                     {t("demo.viewInAR")}
                   </button>
                 </motion.div>
