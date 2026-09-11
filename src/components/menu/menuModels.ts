@@ -68,7 +68,22 @@ export const AR_MODELS: ArModelConfig[] = [
     usdz: "/dist/models/Realistic_Donut_With_Plate.usdz",
     price: "$8.00"
   },
-
+{
+  id: "cupcake",
+  name: "Lavender Vanilla Cupcake",
+  category: "desserts",
+  glb: "/dist/models/cupcake2.glb",
+  usdz: "/dist/models/vanilla_purple_cupcake_AR.usdz",
+  price: "$7.00"
+},
+{
+  id: "strawberry-cake",
+  name: "Realistic Strawberry Cake",
+  category: "desserts",
+  glb: "/dist/models/stcake.glb",
+  usdz: "/dist/models/stacke.usdz",
+  price: "$12.00"
+},
   // --- DRINKS ---
 
 {
@@ -78,7 +93,23 @@ export const AR_MODELS: ArModelConfig[] = [
   glb: "/dist/models/Coffee_Cup_AR.glb",
   usdz: "/dist/models/Coffee_Cup_AR.usdz",
   price: "$4.00"
-}
+},
+{
+  id: "mint-tea",
+  name: "Fresh Mint Tea",
+  category: "drinks",
+  glb: "/dist/models/tea1.glb",
+  usdz: "/dist/models/tea.usdz",
+  price: "$8.00"
+},
+{
+  id: "strawberry-juice",
+  name: "Fresh Strawberry Juice",
+  category: "drinks",
+  glb: "/dist/models/strawberryjuice.glb",
+  usdz: "/dist/models/strawberryjuice.usdz",
+  price: "$9.00"
+},
 ];
 
 export function getArModel(modelId: string): ArModelConfig {
