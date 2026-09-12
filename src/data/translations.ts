@@ -63,6 +63,35 @@ export type TranslationKey =
   | "demo.addToOrder"
   | "demo.qrTitle"
   | "demo.qrDesc"
+  // Demo Categories
+  | "category.mainDishes"
+  | "category.desserts"
+  | "category.drinks"
+  // Demo Dishes (Names & Descriptions)
+  | "dish.pizza.name"
+  | "dish.pizza.desc"
+  | "dish.iceCream.name"
+  | "dish.iceCream.desc"
+  | "dish.sushi.name"
+  | "dish.sushi.desc"
+  | "dish.coffee.name"
+  | "dish.coffee.desc"
+  | "dish.burger.name"
+  | "dish.burger.desc"
+  | "dish.hotdog.name"
+  | "dish.hotdog.desc"
+  | "dish.donut.name"
+  | "dish.donut.desc"
+  | "dish.cupcake.name"
+  | "dish.cupcake.desc"
+  | "dish.strawberryCake.name"
+  | "dish.strawberryCake.desc"
+  | "dish.orangeJuice.name"
+  | "dish.orangeJuice.desc"
+  | "dish.mintTea.name"
+  | "dish.mintTea.desc"
+  | "dish.strawberryJuice.name"
+  | "dish.strawberryJuice.desc"
   // How it works
   | "how.title"
   | "how.subtitle"
@@ -164,8 +193,7 @@ export const translations: Record<Language, Dict> = {
     "hero.title.line1": "Menünüzü",
     "hero.title.highlight": "3D Deneyime",
     "hero.title.line2": "Dönüştürün",
-    "hero.subtitle":
-      "QR kodu taratın, yemekleri 360° keşfedin ve AR ile masanızda birebir görün. 24 saat içinde kurulum.",
+    "hero.subtitle": "QR kodu taratın, yemekleri 360° keşfedin ve AR ile masanızda birebir görün. 24 saat içinde kurulum.",
     "hero.cta.primary": "Hemen Başla",
     "hero.cta.secondary": "Canlı Demoyu Gör",
     "hero.stat.commission.value": "%0",
@@ -200,8 +228,7 @@ export const translations: Record<Language, Dict> = {
     "feat.7.desc": "PDF/Excel menülerinizi AI ile saniyeler içinde dijitalleştirin.",
     "feat.8.title": "Özel Online Sipariş (%0)",
     "feat.8.desc": "Komisyon olmadan kendi entegre sipariş sisteminiz.",
-    "features.compliance":
-      "Tarım Bakanlığı 2026 Menü Yönetmeliği uyumlu: kalori, alerjen ve gramaj bilgileri otomatik dahildir.",
+    "features.compliance": "Tarım Bakanlığı 2026 Menü Yönetmeliği uyumlu: kalori, alerjen ve gramaj bilgileri otomatik dahildir.",
     "demo.title": "İnteraktif 3D Tadım Tezgâhı",
     "demo.subtitle": "Misafirinizin göreceği gerçek kart. Yemeği seçin, döndürün, masada gösterin.",
     "demo.drag": "SÜRÜKLE • YAKINLAŞTIR",
@@ -210,6 +237,33 @@ export const translations: Record<Language, Dict> = {
     "demo.addToOrder": "Siparişe Ekle",
     "demo.qrTitle": "Mobil Cihazınızla Taratın",
     "demo.qrDesc": "WebAR deneyimini başlatmak için QR kodu telefonunuzla tarayın.",
+    "category.mainDishes": "ANA YEMEKLER",
+    "category.desserts": "TATLILAR",
+    "category.drinks": "İÇECEKLER",
+    "dish.pizza.name": "Trüf Pizzası",
+    "dish.pizza.desc": "El açma hamur, kara kış trüfü, mozzarella di bufala, San Marzano domates.",
+    "dish.iceCream.name": "Fruits Icecream",
+    "dish.iceCream.desc": "A5 Japon wagyu, kavurma kömüründe pişirilmiş, brioche ekmek, eski kaşar.",
+    "dish.sushi.name": "Omakase Sushi",
+    "dish.sushi.desc": "Şefin seçtiği 8 parça nigiri, mavi yüzgeçli ton, uni, hokkaido tarağı.",
+    "dish.coffee.name": "Signature Coffee",
+    "dish.coffee.desc": "El yapımı seramik fincanda servis edilen taze demlenmiş nitelikli kahve.",
+    "dish.burger.name": "Classic Cheeseburger",
+    "dish.burger.desc": "Sulu ızgara köfte, erimiş cheddar, taze marul, domates, susamlı ekmek ve patates kızartması.",
+    "dish.hotdog.name": "Grilled Hot Dog",
+    "dish.hotdog.desc": "Hardal, relish, taze soğan ve ketçap ile kızarmış yumuşak ekmekte ızgara sosis.",
+    "dish.donut.name": "Pink Sprinkle Donut",
+    "dish.donut.desc": "Taze pişmiş donut, pembe krema ve renkli çıtır şekerlemeler, modern seramik tabakta.",
+    "dish.cupcake.name": "Lavender Vanilla Cupcake",
+    "dish.cupcake.desc": "Yumuşak lavanta kreması ve inci taneleriyle süslenmiş vanilyalı cupcake.",
+    "dish.strawberryCake.name": "Strawberry Cake",
+    "dish.strawberryCake.desc": "Taze çileklerle süslenmiş ve beyaz seramik stantta sunulan yumuşak pembe çilekli pasta.",
+    "dish.orangeJuice.name": "Fresh Orange Juice",
+    "dish.orangeJuice.desc": "Dilim portakal ve beyaz pipet ile uzun bardakta servis edilen taze sıkılmış portakal suyu.",
+    "dish.mintTea.name": "Fresh Mint Tea",
+    "dish.mintTea.desc": "Modern tabaklı mat seramik fincanda ve taze nane yapraklarıyla servis edilen sıcak kehribar çay.",
+    "dish.strawberryJuice.name": "Fresh Strawberry Juice",
+    "dish.strawberryJuice.desc": "Pembe çizgili pipet ve taze çilek garnitürü ile yuvarlak bardakta servis edilen çilek suyu.",
     "how.title": "Nasıl Çalışır?",
     "how.subtitle": "Beş dakikada yayında olun. Üç basit adım.",
     "how.1.title": "Menü İçeriğini Hazırlayın",
@@ -302,8 +356,7 @@ export const translations: Record<Language, Dict> = {
     "hero.title.line1": "Transform Your Menu",
     "hero.title.highlight": "into a 3D",
     "hero.title.line2": "Experience",
-    "hero.subtitle":
-      "Scan a QR code, explore dishes in 360°, and see them life-size on your table with AR. Setup in 24 hours.",
+    "hero.subtitle": "Scan a QR code, explore dishes in 360°, and see them life-size on your table with AR. Setup in 24 hours.",
     "hero.cta.primary": "Get Started",
     "hero.cta.secondary": "See Live Demo",
     "hero.stat.commission.value": "0%",
@@ -338,8 +391,7 @@ export const translations: Record<Language, Dict> = {
     "feat.7.desc": "Digitize your PDF/Excel menus with AI in seconds.",
     "feat.8.title": "Custom Online Ordering (0%)",
     "feat.8.desc": "Your own integrated ordering system with zero commission.",
-    "features.compliance":
-      "Compliant with the Ministry of Agriculture 2026 Menu Regulation: calories, allergens and grams included automatically.",
+    "features.compliance": "Compliant with the Ministry of Agriculture 2026 Menu Regulation: calories, allergens and grams included automatically.",
     "demo.title": "Interactive 3D Tasting Counter",
     "demo.subtitle": "The exact card your guests will see. Pick a dish, rotate it, show it on the table.",
     "demo.drag": "DRAG • ZOOM",
@@ -348,6 +400,33 @@ export const translations: Record<Language, Dict> = {
     "demo.addToOrder": "Add to Order",
     "demo.qrTitle": "Scan with Your Mobile",
     "demo.qrDesc": "Scan the QR code with your phone to launch the WebAR experience.",
+    "category.mainDishes": "MAIN DISHES",
+    "category.desserts": "DESSERTS",
+    "category.drinks": "DRINKS",
+    "dish.pizza.name": "Truffle Pizza",
+    "dish.pizza.desc": "Hand-stretched dough, winter truffle, mozzarella di bufala, San Marzano tomatoes.",
+    "dish.iceCream.name": "Fruits Ice Cream",
+    "dish.iceCream.desc": "Craft sundae served with fresh seasonal fruit and crispy wafers.",
+    "dish.sushi.name": "Omakase Sushi",
+    "dish.sushi.desc": "Chef's selection of 8 nigiri pieces, bluefin tuna, uni, hokkaido scallop.",
+    "dish.coffee.name": "Signature Coffee",
+    "dish.coffee.desc": "Freshly brewed specialty coffee, served in a handcrafted ceramic cup.",
+    "dish.burger.name": "Classic Cheeseburger",
+    "dish.burger.desc": "Juicy grilled beef patty, melted cheddar, fresh lettuce, tomato, and sesame brioche bun, served with golden fries.",
+    "dish.hotdog.name": "Grilled Hot Dog",
+    "dish.hotdog.desc": "Grilled sausage served in a toasted soft bun with mustard, relish, fresh onions, and ketchup.",
+    "dish.donut.name": "Pink Sprinkle Donut",
+    "dish.donut.desc": "Freshly baked donut with pink glaze and colorful sprinkles, served on a modern ceramic plate.",
+    "dish.cupcake.name": "Lavender Vanilla Cupcake",
+    "dish.cupcake.desc": "Vanilla cupcake with soft lavender buttercream, delicate sugar pearls, and a modern ceramic plate.",
+    "dish.strawberryCake.name": "Strawberry Cake",
+    "dish.strawberryCake.desc": "Soft pink strawberry cake decorated with fresh red strawberries and served on a white ceramic cake stand.",
+    "dish.orangeJuice.name": "Fresh Orange Juice",
+    "dish.orangeJuice.desc": "Freshly squeezed orange juice served in a tall glass with an orange slice and a white straw.",
+    "dish.mintTea.name": "Fresh Mint Tea",
+    "dish.mintTea.desc": "Warm amber tea served in an opaque ceramic cup with a modern saucer and fresh mint leaves.",
+    "dish.strawberryJuice.name": "Fresh Strawberry Juice",
+    "dish.strawberryJuice.desc": "Refreshing strawberry juice served in a rounded glass with a pink-striped straw and fresh strawberry garnish.",
     "how.title": "How It Works",
     "how.subtitle": "Go live in five minutes. In three simple steps.",
     "how.1.title": "Prepare Your Menu Content",
@@ -440,8 +519,7 @@ export const translations: Record<Language, Dict> = {
     "hero.title.line1": "حوّل قائمتك",
     "hero.title.highlight": "إلى تجربة",
     "hero.title.line2": "ثلاثية الأبعاد",
-    "hero.subtitle":
-      "امسح رمز QR، واستكشف الأطباق بزاوية 360 درجة، وشاهدها بحجمها الحقيقي على طاولتك مع الواقع المعزز. الإعداد خلال 24 ساعة.",
+    "hero.subtitle": "امسح رمز QR، واستكشف الأطباق بزاوية 360 درجة، وشاهدها بحجمها الحقيقي على طاولتك مع الواقع المعزز. الإعداد خلال 24 ساعة.",
     "hero.cta.primary": "ابدأ الآن",
     "hero.cta.secondary": "شاهد العرض المباشر",
     "hero.stat.commission.value": "0%",
@@ -476,8 +554,7 @@ export const translations: Record<Language, Dict> = {
     "feat.7.desc": "حوّل قوائم PDF/Excel إلى رقمية بالذكاء الاصطناعي في ثوانٍ.",
     "feat.8.title": "طلب عبر الإنترنت مخصص (0%)",
     "feat.8.desc": "نظام الطلب المتكامل الخاص بك بدون أي عمولة.",
-    "features.compliance":
-      "متوافق مع لائحة القوائم لعام 2026 الصادرة عن وزارة الزراعة: السعرات والحساسية والغرامات تُضاف تلقائياً.",
+    "features.compliance": "متوافق مع لائحة القوائم لعام 2026 الصادرة عن وزارة الزراعة: السعرات والحساسية والغرامات تُضاف تلقائياً.",
     "demo.title": "منصة التذوق ثلاثية الأبعاد التفاعلية",
     "demo.subtitle": "البطاقة الحقيقية التي سيراها ضيوفك. اختر طبقاً وقم بتدويره واعرضه على الطاولة.",
     "demo.drag": "اسحب • قرّب",
@@ -486,6 +563,33 @@ export const translations: Record<Language, Dict> = {
     "demo.addToOrder": "أضف إلى الطلب",
     "demo.qrTitle": "امسح بهاتفك",
     "demo.qrDesc": "امسح رمز QR بهاتفك لتشغيل تجربة الواقع المعزز.",
+    "category.mainDishes": "الأطباق الرئيسية",
+    "category.desserts": "الحلويات",
+    "category.drinks": "المشروبات",
+    "dish.pizza.name": "بيتزا الكمأة",
+    "dish.pizza.desc": "عجين مفرد، كمأة الشتاء، جبنة موزاريلا دي بوفالا، طماطم سان مارزانو.",
+    "dish.iceCream.name": "آيس كريم الفواكه",
+    "dish.iceCream.desc": "آيس كريم حرفي يقدم مع الفواكه الطازجة وقطع الويفر المقرمشة.",
+    "dish.sushi.name": "سوشي أوماكاسي",
+    "dish.sushi.desc": "اختيار الشيف من 8 قطع نيجيري، تونة زعانف زرقاء، أوني، أسقلوب هوكايدو.",
+    "dish.coffee.name": "قهوة مميزة",
+    "dish.coffee.desc": "قهوة مختصة مخمرة طازجة، تقدم في كوب سيراميك مصنوع يدويًا.",
+    "dish.burger.name": "تشيز برجر كلاسيك",
+    "dish.burger.desc": "قطعة لحم بقر مشوية عصارية، شيدر مذاب، خس طازج، طماطم، وخبز بريوش بالسمسم.",
+    "dish.hotdog.name": "هوت دوج مشوي",
+    "dish.hotdog.desc": "نقانق مشوية مقدمة في خبز طري محمص مع الخردل، المذاق، البصل الطازج، والكاتشب.",
+    "dish.donut.name": "دونجل بالرشات الوردي",
+    "dish.donut.desc": "دونات مخبوزة طازجة مع صقيع وردي ورشات ملونة مقرمشة، تقدم على طبق سيراميك حديث.",
+    "dish.cupcake.name": "كัพ كيك الفانيليا واللافندر",
+    "dish.cupcake.desc": "كัพ كيك فانيليا مع كريمة الزبدة الناعمة بنكهة اللافندر ولؤلؤ السكر الرقيق.",
+    "dish.strawberryCake.name": "كيك الفراولة",
+    "dish.strawberryCake.desc": "كيك فراولة وردي ناعم مزين بالفراولة الحمراء الطازجة ويقدم على حامل كيك سيراميك أبيض.",
+    "dish.orangeJuice.name": "عصير برتقال طازج",
+    "dish.orangeJuice.desc": "عصير برتقال معصور طازجًا يقدم في كوب طويل مع شريحة برتقال وقشة بيضاء.",
+    "dish.mintTea.name": "شاي بالنعناع الطازج",
+    "dish.mintTea.desc": "شاي كهرماني دافئ يقدم في كوب سيراميك مع صحن حديث وأوراق نعناع طازجة.",
+    "dish.strawberryJuice.name": "عصير فراولة طازج",
+    "dish.strawberryJuice.desc": "عصير فراولة منعش يقدم في كوب مستدير مع قشة مخططة بالوردي وتزين الفراولة الطازجة.",
     "how.title": "كيف يعمل؟",
     "how.subtitle": "أطلق مشروعك في خمس دقائق. في ثلاث خطوات بسيطة.",
     "how.1.title": "جهّز محتوى قائمتك",
@@ -549,7 +653,7 @@ export const translations: Record<Language, Dict> = {
     "faq.a5": "لا. مع الفوترة الشهرية أو السنوية يمكنك الإلغاء في أي وقت.",
     "contact.title": "اطلب عرضاً تجريبياً",
     "contact.subtitle": "املأ النموذج لعرض تجريبي مخصص وسنعاود الاتصال خلال 24 ساعة.",
-    "contact.name": "الاسم الكامل",
+    "contact.name": " الاسم الكامل",
     "contact.restaurant": "اسم المطعم",
     "contact.email": "البريد الإلكتروني",
     "contact.phone": "الهاتف (اختياري)",

@@ -34,6 +34,16 @@ export default function Header() {
     { label: t("nav.contact"), href: "#contact" },
   ];
 
+  // Smooth scroll handler for the Get Started button
+  const handleScrollToContact = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    const contactSection = document.getElementById("contact");
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: "smooth" });
+    }
+    setDrawerOpen(false); // Close mobile drawer if open
+  };
+
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
@@ -113,7 +123,8 @@ export default function Header() {
             {theme === "dark" ? <Sun size={17} /> : <Moon size={17} />}
           </button>
 
-          <a href="/login">
+          {/* Get Started -> Scrolls down to contact */}
+          <a href="#contact" onClick={handleScrollToContact}>
             <button className="text-sm font-bold text-white bg-[#FF6B00] hover:bg-[#E05A00] px-5 py-2.5 rounded-xl transition-all hover:scale-[1.03] shadow-lg shadow-orange-200">
               {t("nav.getStarted")}
             </button>
@@ -199,7 +210,7 @@ export default function Header() {
                 ))}
               </div>
 
-              <a href="/login" onClick={() => setDrawerOpen(false)} className="mt-6">
+              <a href="#contact" onClick={handleScrollToContact} className="mt-6">
                 <button className="w-full text-sm font-bold text-white bg-[#FF6B00] hover:bg-[#E05A00] py-3 rounded-xl transition-colors">
                   {t("nav.getStarted")}
                 </button>

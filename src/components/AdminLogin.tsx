@@ -80,12 +80,7 @@ export default function AdminLogin() {
             </button>
           </form>
 
-          <p className="text-center text-sm text-gray-500 mt-6">
-            Don&apos;t have an account?{" "}
-            <button className="text-[#FF6B00] font-semibold hover:text-[#E05A00] transition-colors">
-              Sign Up
-            </button>
-          </p>
+          
         </div>
 
         <p className="text-center text-xs text-gray-400 mt-6">

@@ -2,18 +2,25 @@ import { useMemo } from "react";
 import { ThemeProvider } from "./context/ThemeContext";
 import { LanguageProvider } from "./context/LanguageContext";
 import ARViewerPage from "./components/menu/ARViewerPage";
+import AdminLogin from "./components/AdminLogin"; // Ensure this matches your file path (e.g. ./components/AdminLogin or similar)
 import LandingPage from "./pages/LandingPage";
 
 export default function App() {
-  const isArView = useMemo(() => {
-    if (typeof window === "undefined") return false;
-    return new URL(window.location.href).pathname.endsWith("/ar-view");
+  const currentPath = useMemo(() => {
+    if (typeof window === "undefined") return "/";
+    return new URL(window.location.href).pathname;
   }, []);
 
   return (
     <ThemeProvider>
       <LanguageProvider>
-        {isArView ? <ARViewerPage /> : <LandingPage />}
+        {currentPath.endsWith("/ar-view") ? (
+          <ARViewerPage />
+        ) : currentPath.endsWith("/admin") ? (
+          <AdminLogin />
+        ) : (
+          <LandingPage />
+        )}
       </LanguageProvider>
     </ThemeProvider>
   );

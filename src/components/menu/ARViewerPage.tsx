@@ -3,13 +3,6 @@ import { motion } from "framer-motion";
 import { ArrowLeft, Smartphone, Scan } from "lucide-react";
 import { getArModel } from "./menuModels";
 
-/**
- * AR viewer route rendered at `/ar-view?model=<id>`.
- *
- * - iOS (iPhone/iPad): Apple AR Quick Look using the `.usdz` (`ios-src`).
- * - Android: Google Scene Viewer / WebXR using the `.glb` (`src`).
- * - Desktop: in-browser 360° inspection with `model-viewer`.
- */
 export default function ARViewerPage() {
   const model = useMemo(() => {
     if (typeof window === "undefined") return getArModel("pizza");
@@ -23,7 +16,7 @@ export default function ARViewerPage() {
 
   return (
     <div className="flex h-[100dvh] flex-col overflow-hidden bg-slate-950 text-white">
-      <header className="flex shrink-0 items-center justify-between gap-3 border-b border-white/10 px-4 py-3">
+      <header className="flex shrink-0 items-center justify-between gap-3 border-b border-white/10 px-4 py-3 z-10">
         <button
           onClick={() => window.history.back()}
           className="flex items-center gap-1.5 rounded-full border border-white/15 px-3.5 py-2 text-xs font-semibold text-slate-200 transition-colors hover:bg-white/10"
@@ -47,8 +40,17 @@ export default function ARViewerPage() {
         initial={{ opacity: 0, scale: 0.98 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.4 }}
-        className="relative min-h-0 flex-1"
+        className="relative min-h-0 flex-1 overflow-hidden"
       >
+        {/* Fixed Restaurant Background Image from public folder */}
+        <div 
+          className="absolute inset-0 bg-cover bg-center pointer-events-none"
+          style={{ backgroundImage: `url('/public/images/imager.jpg')` }}
+        >
+          <div className="absolute inset-0 bg-black/40 backdrop-blur-[1px]" />
+        </div>
+
+        {/* 3D Model Viewer with matching environment lighting */}
         <model-viewer
           src={model.glb}
           ios-src={model.usdz}
@@ -57,7 +59,7 @@ export default function ARViewerPage() {
           auto-rotate
           auto-rotate-delay="200"
           rotation-per-second="18deg"
-          environment-image="neutral"
+          environment-image="/restaurant-bg.jpg"
           shadow-intensity="1.2"
           exposure="1"
           ar
@@ -65,10 +67,10 @@ export default function ARViewerPage() {
           ar-scale="auto"
           ar-placement="floor"
           camera-orbit="0deg 78deg 105%"
-          style={{ width: "100%", height: "100%", touchAction: "none" }}
+          style={{ width: "100%", height: "100%", touchAction: "none", position: "relative", zIndex: 1 }}
         />
 
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 flex justify-center p-4">
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 flex justify-center p-4 z-10">
           <div className="rounded-2xl border border-white/10 bg-slate-900/80 px-4 py-3 text-center backdrop-blur-md">
             <p className="flex items-center justify-center gap-1.5 text-xs font-semibold text-slate-200">
               <Smartphone size={13} className="text-[#FF6B00]" />
