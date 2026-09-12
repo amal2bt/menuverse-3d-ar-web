@@ -1,198 +1,20 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Move3d, ScanLine, Flame } from "lucide-react";
 import { useLanguage } from "../../context/LanguageContext";
 import ARQRCodeModal from "../menu/ARQRCodeModal";
-import { buildArUrl } from "../menu/menuModels";
-
-type TastingDish = {
-  id: string;
-  number: string;
-  categoryKey: string;     // Internal key for category filtering
-  categoryLabel: string;   // Display label for the badge
-  name: string;
-  desc: string;
-  priceTRY: string;
-  priceAED: string;
-  calories: string;
-  model: string;
-  iosModel?: string;
-};
-
-const CATEGORIES = [
-  { id: "main-dishes", label: "Main Dishes" },
-  { id: "desserts", label: "Desserts" },
-  { id: "drinks", label: "Drinks" },
-];
-
-const TASTING_DISHES: TastingDish[] = [
-  {
-    id: "pizza",
-    number: "01",
-    categoryKey: "main-dishes",
-    categoryLabel: "MAIN DISHES",
-    name: "Trüf Pizzası",
-    desc: "El açma hamur, kara kış trüfü, mozzarella di bufala, San Marzano domates.",
-    priceTRY: "₺680",
-    priceAED: "AED 90",
-    calories: "820 kcal",
-    model: "/dist/models/pizza_modern_plate1.glb",
-    iosModel: "/dist/models/finalpizza.usdz",
-  },
-  {
-    id: "ice-cream",
-    number: "01",
-    categoryKey: "desserts",
-    categoryLabel: "DESSERTS",
-    name: "Fruits Icecream",
-    desc: "A5 Japon wagyu, kavurma kömüründe pişirilmiş, brioche ekmek, eski kaşar.",
-    priceTRY: "₺1.250",
-    priceAED: "AED 165",
-    calories: "940 kcal",
-    model: "/dist/models/icecreamfinal.glb",
-    iosModel: "/dist/models/ice_cream_sundae_AR.usdz"
-  },
-  {
-    id: "sushi",
-    number: "02",
-    categoryKey: "main-dishes",
-    categoryLabel: "MAIN DISHES",
-    name: "Omakase Sushi",
-    desc: "Şefin seçtiği 8 parça nigiri, mavi yüzgeçli ton, uni, hokkaido tarağı.",
-    priceTRY: "₺1.890",
-    priceAED: "AED 245",
-    calories: "610 kcal",
-    model: "/dist/models/REALISTIC_SUSHI_AR4.glb",
-    iosModel: "/dist/models/REALISTIC_SUSHI_AR5.usdz",
-  },
-    {
-    id: "coffee",
-    number: "01",
-    categoryKey: "drinks",
-    categoryLabel: "DRINKS",
-    name: "Signature Coffee",
-    desc: "Freshly brewed specialty coffee, served in a handcrafted ceramic cup.",
-    priceTRY: "₺180",
-    priceAED: "AED 24",
-    calories: "5 kcal",
-    model: "/dist/models/Coffee_Cup_AR.glb",
-    iosModel: "/dist/models/Coffee_Cup_AR.usdz",
-  },
-  {
-  id: "burger",
-  number: "03",
-  categoryKey: "main-dishes",
-  categoryLabel: "MAIN DISHES",
-  name: "Classic Cheeseburger",
-  desc: "Juicy grilled beef patty, melted cheddar, fresh lettuce, tomato, and sesame brioche bun, served with golden fries.",
-  priceTRY: "₺590",
-  priceAED: "AED 78",
-  calories: "940 kcal",
-  model: "/dist/models/burger.glb",
-  iosModel: "/dist/models/burger.usdz",
-},
-{
-  id: "hotdog",
-  number: "04",
-  categoryKey: "main-dishes",
-  categoryLabel: "MAIN DISHES",
-  name: "Grilled Hot Dog",
-  desc: "Grilled sausage served in a toasted soft bun with mustard, relish, fresh onions, and ketchup.",
-  priceTRY: "₺490",
-  priceAED: "AED 65",
-  calories: "720 kcal",
-  model: "/dist/models/Realistic_Hotdogs_AR.glb",
-  iosModel: "/dist/models/Realistic_Hotdogs_AR.usdz",
-},
-  {
-    id: "donut",
-    number: "02",
-    categoryKey: "desserts",
-    categoryLabel: "DESSERTS",
-    name: "Pink Sprinkle Donut",
-    desc: "Taze pişmiş donut, pembe krema ve renkli çıtır şekerlemeler, modern seramik tabakta servis edilir.",
-    priceTRY: "₺280",
-    priceAED: "AED 37",
-    calories: "420 kcal",
-    model: "/dist/models/RealisticDonut_With_Plate.glb",
-    iosModel: "/dist/models/Realistic_Donut_With_Plate.usdz",
-  },
-{
-  id: "cupcake",
-  number: "03",
-  categoryKey: "desserts",
-  categoryLabel: "DESSERTS",
-  name: "Lavender Vanilla Cupcake",
-  desc: "Vanilla cupcake with soft lavender buttercream, delicate sugar pearls, and a modern ceramic plate.",
-  priceTRY: "₺250",
-  priceAED: "AED 33",
-  calories: "380 kcal",
-  model: "/dist/models/cupcake2.glb",
-  iosModel: "/dist/models/vanilla_purple_cupcake_AR.usdz",
-},
-{
-  id: "strawberry-cake",
-  number: "04",
-  categoryKey: "desserts",
-  categoryLabel: "DESSERTS",
-  name: " Strawberry Cake",
-  desc: "Soft pink strawberry cake decorated with fresh red strawberries and served on a white ceramic cake stand.",
-  priceTRY: "₺450",
-  priceAED: "AED 60",
-  calories: "520 kcal",
-  model: "/dist/models/stcake.glb",
-  iosModel: "/dist/models/stacke.usdz",
-  
-},
-{
-  id: "orange-juice",
-  number: "02",
-  categoryKey: "drinks",
-  categoryLabel: "DRINKS",
-  name: "Fresh Orange Juice",
-  desc: "Freshly squeezed orange juice served in a tall glass with an orange slice and a white straw.",
-  priceTRY: "₺160",
-  priceAED: "AED 21",
-  calories: "112 kcal",
-  model: "/dist/models/orangejuice.glb",
-  iosModel: "/dist/models/orangejuice.usdz",
-},
-{
-  id: "mint-tea",
-  number: "03",
-  categoryKey: "drinks",
-  categoryLabel: "DRINKS",
-  name: "Fresh Mint Tea",
-  desc: "Warm amber tea served in an opaque ceramic cup with a modern saucer and fresh mint leaves.",
-  priceTRY: "₺150",
-  priceAED: "AED 20",
-  calories: "2 kcal",
-  model: "/dist/models/tea1.glb",
-  iosModel: "/dist/models/tea.usdz",
-},
-{
-  id: "strawberry-juice",
-  number: "04",
-  categoryKey: "drinks",
-  categoryLabel: "DRINKS",
-  name: "Fresh Strawberry Juice",
-  desc: "Refreshing strawberry juice served in a rounded glass with a pink-striped straw and fresh strawberry garnish.",
-  priceTRY: "₺180",
-  priceAED: "AED 24",
-  calories: "140 kcal",
-  model: "/dist/models/strawberryjuice.glb",
-  iosModel: "/dist/models/strawberryjuice.usdz",
-},
-];
+import { buildArUrl, AR_MODELS, CATEGORIES, type ArModelConfig } from "../menu/menuModels";
 
 export default function DemoViewer() {
   const { t } = useLanguage();
   const [selectedCategory, setSelectedCategory] = useState<string>("main-dishes");
 
-  // Filter dishes based on the selected category tab
-  const filteredDishes = TASTING_DISHES.filter((d) => d.categoryKey === selectedCategory);
+  // Memoize filtered dishes to prevent recreating the array on every render
+  const filteredDishes = useMemo(() => {
+    return AR_MODELS.filter((d) => d.category === selectedCategory);
+  }, [selectedCategory]);
 
-  const [active, setActive] = useState<TastingDish>(filteredDishes[0] || TASTING_DISHES[0]);
+  const [active, setActive] = useState<ArModelConfig>(filteredDishes[0] || AR_MODELS[0]);
   const [showArModal, setShowArModal] = useState(false);
   const [loaded, setLoaded] = useState(false);
 
@@ -201,7 +23,7 @@ export default function DemoViewer() {
     if (filteredDishes.length > 0 && !filteredDishes.some((d) => d.id === active.id)) {
       setActive(filteredDishes[0]);
     }
-  }, [selectedCategory, filteredDishes, active.id]);
+  }, [filteredDishes, active.id]);
 
   useEffect(() => {
     setLoaded(false);
@@ -243,7 +65,7 @@ export default function DemoViewer() {
                       : "bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700"
                   }`}
                 >
-                  {cat.label}
+                  {t(cat.translationKey as any)}
                 </button>
               );
             })}
@@ -258,7 +80,7 @@ export default function DemoViewer() {
           className="bg-white dark:bg-slate-900 rounded-3xl shadow-xl border border-slate-100 dark:border-slate-800 p-6 md:p-10"
         >
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-
+            
             {/* ─── Left Column: Selector List for Active Category ─── */}
             <div className="lg:col-span-3 flex lg:flex-col gap-2 overflow-x-auto lg:overflow-visible">
               {filteredDishes.length === 0 ? (
@@ -294,14 +116,14 @@ export default function DemoViewer() {
                                 : "text-slate-600 dark:text-slate-300"
                             }`}
                           >
-                            {dish.name}
+                            {t(dish.name as any)}
                           </span>
                           <span
                             className={`text-[11px] tracking-widest font-medium ${
                               selected ? "text-[#FF6B00]" : "text-slate-400"
                             }`}
                           >
-                            {dish.categoryLabel}
+                            {t(dish.categoryLabel as any)}
                           </span>
                         </span>
                       </span>
@@ -314,7 +136,7 @@ export default function DemoViewer() {
             {/* ─── Center Column: 3D Viewport ─── */}
             <div className="lg:col-span-6">
               <div className="relative bg-[#F5F2EB] dark:bg-slate-800/70 rounded-3xl min-h-[380px] flex items-center justify-center p-6 shadow-inner overflow-hidden">
-
+                
                 {/* Drag / Zoom badge */}
                 <span className="absolute left-4 top-4 z-20 bg-white/80 dark:bg-slate-900/70 backdrop-blur-md text-[10px] font-bold tracking-widest text-slate-500 px-3 py-1.5 rounded-full border border-slate-200/50 shadow-sm pointer-events-none">
                   {t("demo.drag")}
@@ -330,9 +152,9 @@ export default function DemoViewer() {
                     className="relative w-full h-full min-h-[300px]"
                   >
                     <model-viewer
-                      src={active.model}
-                      ios-src={active.iosModel}
-                      alt={`${active.name} 3D model`}
+                      src={active.glb}
+                      ios-src={active.usdz}
+                      alt={`${t(active.name as any)} 3D model`}
                       camera-controls
                       auto-rotate
                       auto-rotate-delay="600"
@@ -387,11 +209,15 @@ export default function DemoViewer() {
                   exit={{ opacity: 0, y: -10 }}
                   transition={{ duration: 0.25 }}
                 >
-                  <span className="text-xs font-bold tracking-widest text-[#FF6B00]">{active.categoryLabel}</span>
+                  <span className="text-xs font-bold tracking-widest text-[#FF6B00]">
+                    {t(active.categoryLabel as any)}
+                  </span>
                   <h3 className="font-serif text-2xl font-bold text-slate-900 dark:text-slate-50 tracking-tight mt-1 leading-tight">
-                    {active.name}
+                    {t(active.name as any)}
                   </h3>
-                  <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed mt-3">{active.desc}</p>
+                  <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed mt-3">
+                    {t(active.desc as any)}
+                  </p>
 
                   {/* Price + Calories */}
                   <div className="flex flex-wrap items-center gap-3 mt-5">

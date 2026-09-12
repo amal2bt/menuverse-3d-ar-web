@@ -1,125 +1,201 @@
 export type ArModelConfig = {
   id: string;
+  number: string;
   name: string;
   category: 'main-dishes' | 'desserts' | 'drinks';
+  categoryLabel: string;
+  desc: string;
+  priceTRY: string;
+  priceAED: string;
+  calories: string;
   /** GLB model URL served by Vite from `public/`. Also drives Android Scene Viewer / WebXR. */
   glb: string;
   /** USDZ model URL used by Apple AR Quick Look on iOS. */
   usdz?: string;
-  price?: string;
   /** Optional custom background image for the 3D viewer */
   background?: string;
 };
 
 export const CATEGORIES = [
-  { id: 'main-dishes', name: 'Main Dishes' },
-  { id: 'desserts', name: 'Desserts' },
-  { id: 'drinks', name: 'Drinks' },
+  { id: 'main-dishes', label: 'Main Dishes' },
+  { id: 'desserts', label: 'Desserts' },
+  { id: 'drinks', label: 'Drinks' },
 ];
 
-const DEFAULT_BACKGROUND = "/public/images/imagesr.jpg";
+const DEFAULT_BACKGROUND = "/images/imagesr.jpg";
 
 export const AR_MODELS: ArModelConfig[] = [
   // --- MAIN DISHES ---
   {
     id: "pizza",
-    name: "Truffle Pizza",
+    number: "01",
     category: "main-dishes",
-    glb: "/dist/models/pizza_modern_plate1.glb",
+    categoryLabel: "MAIN DISHES",
+    name: "Trüf Pizzası",
+    desc: "El açma hamur, kara kış trüfü, mozzarella di bufala, San Marzano domates.",
+    priceTRY: "₺680",
+    priceAED: "AED 90",
+    calories: "820 kcal",
+    glb: "/models/pizza_modern_plate1.glb",
     usdz: "/models/finalpizza.usdz",
-    price: "$18.00",
     background: DEFAULT_BACKGROUND,
   },
   {
     id: "sushi",
-    name: "Omakase Sushi",
+    number: "02",
     category: "main-dishes",
-    glb: "/dist/models/REALISTIC_SUSHI_AR3.glb",
-    usdz: "/dist/models/REALISTIC_SUSHI_AR3.usdz",
-    price: "$24.00",
+    categoryLabel: "MAIN DISHES",
+    name: "Omakase Sushi",
+    desc: "Şefin seçtiği 8 parça nigiri, mavi yüzgeçli ton, uni, hokkaido tarağı.",
+    priceTRY: "₺1.890",
+    priceAED: "AED 245",
+    calories: "610 kcal",
+    glb: "/models/REALISTIC_SUSHI_AR4.glb",
+    usdz: "/models/REALISTIC_SUSHI_AR5.usdz",
     background: DEFAULT_BACKGROUND,
   },
   {
     id: "burger",
-    name: "Classic Cheeseburger",
+    number: "03",
     category: "main-dishes",
-    glb: "/dist/models/burger.glb",
-    usdz: "/dist/models/burger.usdz",
-    price: "$16.00",
+    categoryLabel: "MAIN DISHES",
+    name: "Classic Cheeseburger",
+    desc: "Juicy grilled beef patty, melted cheddar, fresh lettuce, tomato, and sesame brioche bun, served with golden fries.",
+    priceTRY: "₺590",
+    priceAED: "AED 78",
+    calories: "940 kcal",
+    glb: "/models/burger.glb",
+    usdz: "/models/burger.usdz",
     background: DEFAULT_BACKGROUND,
   },
   {
     id: "hotdog",
-    name: "Grilled Hot Dog",
+    number: "04",
     category: "main-dishes",
-    glb: "/dist/models/Realistic_Hotdogs_AR.glb",
-    usdz: "/dist/models/Realistic_Hotdogs_AR.usdz",
-    price: "$14.00",
+    categoryLabel: "MAIN DISHES",
+    name: "Grilled Hot Dog",
+    desc: "Grilled sausage served in a toasted soft bun with mustard, relish, fresh onions, and ketchup.",
+    priceTRY: "₺490",
+    priceAED: "AED 65",
+    calories: "720 kcal",
+    glb: "/models/Realistic_Hotdogs_AR.glb",
+    usdz: "/models/Realistic_Hotdogs_AR.usdz",
     background: DEFAULT_BACKGROUND,
   },
+  
   // --- DESSERTS ---
   {
     id: "ice-cream",
-    name: "Cocktail Ice Cream",
+    number: "01",
     category: "desserts",
-    glb: "/dist/models/icecream_fixed.glb",
-    usdz: "/dist/models/ice_cream_sundae_AR.usdz",
-    price: "$9.00",
+    categoryLabel: "DESSERTS",
+    name: "Fruits Icecream",
+    desc: "A5 Japon wagyu, kavurma kömüründe pişirilmiş, brioche ekmek, eski kaşar.",
+    priceTRY: "₺1.250",
+    priceAED: "AED 165",
+    calories: "940 kcal",
+    glb: "/models/icecreamfinal.glb",
+    usdz: "/models/ice_cream_sundae_AR.usdz",
     background: DEFAULT_BACKGROUND,
   },
   {
     id: "donut",
-    name: "Pink Sprinkle Donut",
+    number: "02",
     category: "desserts",
-    glb: "/dist/models/donut.glb",
-    usdz: "/dist/models/Realistic_Donut_With_Plate.usdz",
-    price: "$8.00",
+    categoryLabel: "DESSERTS",
+    name: "Pink Sprinkle Donut",
+    desc: "Taze pişmiş donut, pembe krema ve renkli çıtır şekerlemeler, modern seramik tabakta servis edilir.",
+    priceTRY: "₺280",
+    priceAED: "AED 37",
+    calories: "420 kcal",
+    glb: "/models/RealisticDonut_With_Plate.glb",
+    usdz: "/models/Realistic_Donut_With_Plate.usdz",
     background: DEFAULT_BACKGROUND,
   },
   {
     id: "cupcake",
-    name: "Lavender Vanilla Cupcake",
+    number: "03",
     category: "desserts",
-    glb: "/dist/models/cupcake2.glb",
-    usdz: "/dist/models/vanilla_purple_cupcake_AR.usdz",
-    price: "$7.00",
+    categoryLabel: "DESSERTS",
+    name: "Lavender Vanilla Cupcake",
+    desc: "Vanilla cupcake with soft lavender buttercream, delicate sugar pearls, and a modern ceramic plate.",
+    priceTRY: "₺250",
+    priceAED: "AED 33",
+    calories: "380 kcal",
+    glb: "/models/cupcake2.glb",
+    usdz: "/models/vanilla_purple_cupcake_AR.usdz",
     background: DEFAULT_BACKGROUND,
   },
   {
     id: "strawberry-cake",
-    name: "Realistic Strawberry Cake",
+    number: "04",
     category: "desserts",
-    glb: "/dist/models/stcake.glb",
-    usdz: "/dist/models/stacke.usdz",
-    price: "$12.00",
+    categoryLabel: "DESSERTS",
+    name: "Strawberry Cake",
+    desc: "Soft pink strawberry cake decorated with fresh red strawberries and served on a white ceramic cake stand.",
+    priceTRY: "₺450",
+    priceAED: "AED 60",
+    calories: "520 kcal",
+    glb: "/models/stcake.glb",
+    usdz: "/models/stacke.usdz",
     background: DEFAULT_BACKGROUND,
   },
+
   // --- DRINKS ---
   {
     id: "coffee",
-    name: "Coffee",
+    number: "01",
     category: "drinks",
-    glb: "/dist/models/Coffee_Cup_AR.glb",
-    usdz: "/dist/models/Coffee_Cup_AR.usdz",
-    price: "$4.00",
+    categoryLabel: "DRINKS",
+    name: "Signature Coffee",
+    desc: "Freshly brewed specialty coffee, served in a handcrafted ceramic cup.",
+    priceTRY: "₺180",
+    priceAED: "AED 24",
+    calories: "5 kcal",
+    glb: "/models/Coffee_Cup_AR.glb",
+    usdz: "/models/Coffee_Cup_AR.usdz",
+    background: DEFAULT_BACKGROUND,
+  },
+  {
+    id: "orange-juice",
+    number: "02",
+    category: "drinks",
+    categoryLabel: "DRINKS",
+    name: "Fresh Orange Juice",
+    desc: "Freshly squeezed orange juice served in a tall glass with an orange slice and a white straw.",
+    priceTRY: "₺160",
+    priceAED: "AED 21",
+    calories: "112 kcal",
+    glb: "/models/orangejuice.glb",
+    usdz: "/models/orangejuice.usdz",
     background: DEFAULT_BACKGROUND,
   },
   {
     id: "mint-tea",
-    name: "Fresh Mint Tea",
+    number: "03",
     category: "drinks",
-    glb: "/dist/models/tea1.glb",
-    usdz: "/dist/models/tea.usdz",
-    price: "$8.00",
+    categoryLabel: "DRINKS",
+    name: "Fresh Mint Tea",
+    desc: "Warm amber tea served in an opaque ceramic cup with a modern saucer and fresh mint leaves.",
+    priceTRY: "₺150",
+    priceAED: "AED 20",
+    calories: "2 kcal",
+    glb: "/models/tea1.glb",
+    usdz: "/models/tea.usdz",
     background: DEFAULT_BACKGROUND,
   },
   {
     id: "strawberry-juice",
-    name: "Fresh Strawberry Juice",
+    number: "04",
     category: "drinks",
-    glb: "/dist/models/strawberryjuice.glb",
-    usdz: "/dist/models/strawberryjuice.usdz",
-    price: "$9.00",
+    categoryLabel: "DRINKS",
+    name: "Fresh Strawberry Juice",
+    desc: "Refreshing strawberry juice served in a rounded glass with a pink-striped straw and fresh strawberry garnish.",
+    priceTRY: "₺180",
+    priceAED: "AED 24",
+    calories: "140 kcal",
+    glb: "/models/strawberryjuice.glb",
+    usdz: "/models/strawberryjuice.usdz",
     background: DEFAULT_BACKGROUND,
   },
 ];
@@ -128,36 +204,19 @@ export function getArModel(modelId: string): ArModelConfig {
   const id = modelId.toLowerCase();
   const found = AR_MODELS.find((m) => m.id.toLowerCase() === id) ?? AR_MODELS[0];
   
-  // Ensure background always has a fallback value
   return {
     ...found,
     background: found.background || DEFAULT_BACKGROUND,
   };
 }
 
-// ... keep your getBaseUrl and buildArUrl functions as they are below ...
 export type ArQrTarget = "page" | "usdz";
 
-/**
- * Resolves the public origin used for the AR link:
- * 1. Hardcoded ngrok fallback (prevents localhost errors during active testing).
- * 2. Environment variables (`VITE_PUBLIC_BASE_URL` / `NEXT_PUBLIC_BASE_URL`).
- * 3. `window.location.origin` fallback.
- */
 export function getBaseUrl(baseUrl?: string): string {
-  // Hardcoded direct override for your active ngrok session
   const ngrokOverride = "https://unremoved-agripina-pensionable.ngrok-free.dev";
-
-  const fromEnv: string | undefined =
-    import.meta.env.VITE_PUBLIC_BASE_URL ?? import.meta.env.NEXT_PUBLIC_BASE_URL;
-  
-  return (baseUrl ?? fromEnv ?? ngrokOverride).replace(/\/+$/, "");
+  return (baseUrl ?? ngrokOverride).replace(/\/+$/, "");
 }
 
-/**
- * Builds the shareable URL that a real QR code encodes.
- * If target is "usdz" and the model has a USDZ file, it points directly to the file for iOS AR Quick Look.
- */
 export function buildArUrl(modelId: string, baseUrl?: string, target: ArQrTarget = "page"): string {
   const model = getArModel(modelId);
   const base = getBaseUrl(baseUrl);
@@ -168,7 +227,6 @@ export function buildArUrl(modelId: string, baseUrl?: string, target: ArQrTarget
   
   const useUsdz = target === "usdz" || envTarget === "usdz";
   
-  // If requesting usdz and model has one, serve the raw .usdz file URL directly for iOS
   const url = useUsdz && model.usdz 
     ? `${base}${model.usdz}` 
     : `${base}/ar-view?model=${encodeURIComponent(modelId)}`;
@@ -180,5 +238,5 @@ export function buildArUrl(modelId: string, baseUrl?: string, target: ArQrTarget
     );
   }
 
-  return url;
+  return url; 
 }

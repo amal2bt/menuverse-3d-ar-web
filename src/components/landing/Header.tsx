@@ -124,10 +124,12 @@ export default function Header() {
           </button>
 
           {/* Get Started -> Scrolls down to contact */}
-          <a href="#contact" onClick={handleScrollToContact}>
-            <button className="text-sm font-bold text-white bg-[#FF6B00] hover:bg-[#E05A00] px-5 py-2.5 rounded-xl transition-all hover:scale-[1.03] shadow-lg shadow-orange-200">
-              {t("nav.getStarted")}
-            </button>
+          <a
+            href="#contact"
+            onClick={handleScrollToContact}
+            className="inline-block text-sm font-bold text-white bg-[#FF6B00] hover:bg-[#E05A00] px-5 py-2.5 rounded-xl transition-all hover:scale-[1.03] shadow-lg shadow-orange-200"
+          >
+            {t("nav.getStarted")}
           </a>
         </div>
 
@@ -210,10 +212,12 @@ export default function Header() {
                 ))}
               </div>
 
-              <a href="#contact" onClick={handleScrollToContact} className="mt-6">
-                <button className="w-full text-sm font-bold text-white bg-[#FF6B00] hover:bg-[#E05A00] py-3 rounded-xl transition-colors">
-                  {t("nav.getStarted")}
-                </button>
+              <a
+                href="#contact"
+                onClick={handleScrollToContact}
+                className="mt-6 block w-full text-center text-sm font-bold text-white bg-[#FF6B00] hover:bg-[#E05A00] py-3 rounded-xl transition-colors"
+              >
+                {t("nav.getStarted")}
               </a>
             </motion.aside>
           </>

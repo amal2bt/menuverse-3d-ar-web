@@ -76,15 +76,17 @@ export default function Hero() {
           custom={3}
           className="mt-10 flex flex-col sm:flex-row gap-4 justify-center"
         >
-          <a href="#contact">
-            <button className="px-8 py-4 rounded-2xl bg-[#FF6B00] text-white font-bold text-base hover:bg-[#E05A00] hover:scale-[1.03] transition-all shadow-xl shadow-orange-200 dark:shadow-orange-900/40 w-full sm:w-auto">
-              {t("hero.cta.primary")}
-            </button>
+          <a
+            href="#contact"
+            className="inline-block px-8 py-4 rounded-2xl bg-[#FF6B00] text-white font-bold text-base hover:bg-[#E05A00] hover:scale-[1.03] transition-all shadow-xl shadow-orange-200 dark:shadow-orange-900/40 w-full sm:w-auto"
+          >
+            {t("hero.cta.primary")}
           </a>
-          <a href="#demo">
-            <button className="px-8 py-4 rounded-2xl glass text-slate-800 dark:text-slate-100 font-bold text-base border border-slate-200/70 dark:border-slate-700 hover:scale-[1.03] transition-all shadow-sm w-full sm:w-auto">
-              {t("hero.cta.secondary")}
-            </button>
+          <a
+            href="#demo"
+            className="inline-block px-8 py-4 rounded-2xl glass text-slate-800 dark:text-slate-100 font-bold text-base border border-slate-200/70 dark:border-slate-700 hover:scale-[1.03] transition-all shadow-sm w-full sm:w-auto"
+          >
+            {t("hero.cta.secondary")}
           </a>
         </motion.div>
 

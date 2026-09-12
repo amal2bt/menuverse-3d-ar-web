@@ -45,7 +45,7 @@ export default function ARViewerPage() {
         {/* Fixed Restaurant Background Image from public folder */}
         <div 
           className="absolute inset-0 bg-cover bg-center pointer-events-none"
-          style={{ backgroundImage: `url('/public/images/imager.jpg')` }}
+          style={{ backgroundImage: `url('/public/images/imagesr.jpg')` }}
         >
           <div className="absolute inset-0 bg-black/40 backdrop-blur-[1px]" />
         </div>
