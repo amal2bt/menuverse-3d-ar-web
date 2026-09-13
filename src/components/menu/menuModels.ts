@@ -1,7 +1,12 @@
+import type { TranslationKey } from '../../data/translations';
+
 export type ArModelConfig = {
   id: string;
   number: string;
   name: string;
+  nameKey: TranslationKey;
+  descKey: TranslationKey;
+  categoryNameKey: TranslationKey;
   category: 'main-dishes' | 'desserts' | 'drinks';
   categoryLabel: string;
   desc: string;
@@ -17,9 +22,9 @@ export type ArModelConfig = {
 };
 
 export const CATEGORIES = [
-  { id: 'main-dishes', label: 'Main Dishes' },
-  { id: 'desserts', label: 'Desserts' },
-  { id: 'drinks', label: 'Drinks' },
+  { id: 'main-dishes', nameKey: 'category.mainDishes' as TranslationKey },
+  { id: 'desserts', nameKey: 'category.desserts' as TranslationKey },
+  { id: 'drinks', nameKey: 'category.drinks' as TranslationKey },
 ];
 
 const DEFAULT_BACKGROUND = "/images/imagesr.jpg";
@@ -32,6 +37,9 @@ export const AR_MODELS: ArModelConfig[] = [
     category: "main-dishes",
     categoryLabel: "MAIN DISHES",
     name: "Trüf Pizzası",
+    nameKey: "dish.pizza.name",
+    descKey: "dish.pizza.desc",
+    categoryNameKey: "category.mainDishes",
     desc: "El açma hamur, kara kış trüfü, mozzarella di bufala, San Marzano domates.",
     priceTRY: "₺680",
     priceAED: "AED 90",
@@ -46,6 +54,9 @@ export const AR_MODELS: ArModelConfig[] = [
     category: "main-dishes",
     categoryLabel: "MAIN DISHES",
     name: "Omakase Sushi",
+    nameKey: "dish.sushi.name",
+    descKey: "dish.sushi.desc",
+    categoryNameKey: "category.mainDishes",
     desc: "Şefin seçtiği 8 parça nigiri, mavi yüzgeçli ton, uni, hokkaido tarağı.",
     priceTRY: "₺1.890",
     priceAED: "AED 245",
@@ -60,6 +71,9 @@ export const AR_MODELS: ArModelConfig[] = [
     category: "main-dishes",
     categoryLabel: "MAIN DISHES",
     name: "Classic Cheeseburger",
+    nameKey: "dish.burger.name",
+    descKey: "dish.burger.desc",
+    categoryNameKey: "category.mainDishes",
     desc: "Juicy grilled beef patty, melted cheddar, fresh lettuce, tomato, and sesame brioche bun, served with golden fries.",
     priceTRY: "₺590",
     priceAED: "AED 78",
@@ -74,6 +88,9 @@ export const AR_MODELS: ArModelConfig[] = [
     category: "main-dishes",
     categoryLabel: "MAIN DISHES",
     name: "Grilled Hot Dog",
+    nameKey: "dish.hotdog.name",
+    descKey: "dish.hotdog.desc",
+    categoryNameKey: "category.mainDishes",
     desc: "Grilled sausage served in a toasted soft bun with mustard, relish, fresh onions, and ketchup.",
     priceTRY: "₺490",
     priceAED: "AED 65",
@@ -90,6 +107,9 @@ export const AR_MODELS: ArModelConfig[] = [
     category: "desserts",
     categoryLabel: "DESSERTS",
     name: "Fruits Icecream",
+    nameKey: "dish.iceCream.name",
+    descKey: "dish.iceCream.desc",
+    categoryNameKey: "category.desserts",
     desc: "A5 Japon wagyu, kavurma kömüründe pişirilmiş, brioche ekmek, eski kaşar.",
     priceTRY: "₺1.250",
     priceAED: "AED 165",
@@ -104,6 +124,9 @@ export const AR_MODELS: ArModelConfig[] = [
     category: "desserts",
     categoryLabel: "DESSERTS",
     name: "Pink Sprinkle Donut",
+    nameKey: "dish.donut.name",
+    descKey: "dish.donut.desc",
+    categoryNameKey: "category.desserts",
     desc: "Taze pişmiş donut, pembe krema ve renkli çıtır şekerlemeler, modern seramik tabakta servis edilir.",
     priceTRY: "₺280",
     priceAED: "AED 37",
@@ -118,6 +141,9 @@ export const AR_MODELS: ArModelConfig[] = [
     category: "desserts",
     categoryLabel: "DESSERTS",
     name: "Lavender Vanilla Cupcake",
+    nameKey: "dish.cupcake.name",
+    descKey: "dish.cupcake.desc",
+    categoryNameKey: "category.desserts",
     desc: "Vanilla cupcake with soft lavender buttercream, delicate sugar pearls, and a modern ceramic plate.",
     priceTRY: "₺250",
     priceAED: "AED 33",
@@ -132,6 +158,9 @@ export const AR_MODELS: ArModelConfig[] = [
     category: "desserts",
     categoryLabel: "DESSERTS",
     name: "Strawberry Cake",
+    nameKey: "dish.strawberryCake.name",
+    descKey: "dish.strawberryCake.desc",
+    categoryNameKey: "category.desserts",
     desc: "Soft pink strawberry cake decorated with fresh red strawberries and served on a white ceramic cake stand.",
     priceTRY: "₺450",
     priceAED: "AED 60",
@@ -148,6 +177,9 @@ export const AR_MODELS: ArModelConfig[] = [
     category: "drinks",
     categoryLabel: "DRINKS",
     name: "Signature Coffee",
+    nameKey: "dish.coffee.name",
+    descKey: "dish.coffee.desc",
+    categoryNameKey: "category.drinks",
     desc: "Freshly brewed specialty coffee, served in a handcrafted ceramic cup.",
     priceTRY: "₺180",
     priceAED: "AED 24",
@@ -162,6 +194,9 @@ export const AR_MODELS: ArModelConfig[] = [
     category: "drinks",
     categoryLabel: "DRINKS",
     name: "Fresh Orange Juice",
+    nameKey: "dish.orangeJuice.name",
+    descKey: "dish.orangeJuice.desc",
+    categoryNameKey: "category.drinks",
     desc: "Freshly squeezed orange juice served in a tall glass with an orange slice and a white straw.",
     priceTRY: "₺160",
     priceAED: "AED 21",
@@ -176,6 +211,9 @@ export const AR_MODELS: ArModelConfig[] = [
     category: "drinks",
     categoryLabel: "DRINKS",
     name: "Fresh Mint Tea",
+    nameKey: "dish.mintTea.name",
+    descKey: "dish.mintTea.desc",
+    categoryNameKey: "category.drinks",
     desc: "Warm amber tea served in an opaque ceramic cup with a modern saucer and fresh mint leaves.",
     priceTRY: "₺150",
     priceAED: "AED 20",
@@ -190,6 +228,9 @@ export const AR_MODELS: ArModelConfig[] = [
     category: "drinks",
     categoryLabel: "DRINKS",
     name: "Fresh Strawberry Juice",
+    nameKey: "dish.strawberryJuice.name",
+    descKey: "dish.strawberryJuice.desc",
+    categoryNameKey: "category.drinks",
     desc: "Refreshing strawberry juice served in a rounded glass with a pink-striped straw and fresh strawberry garnish.",
     priceTRY: "₺180",
     priceAED: "AED 24",

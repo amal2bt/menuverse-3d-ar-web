@@ -65,7 +65,7 @@ export default function DemoViewer() {
                       : "bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700"
                   }`}
                 >
-                  {t(cat.translationKey as any)}
+                  {t(cat.nameKey)}
                 </button>
               );
             })}
@@ -116,14 +116,14 @@ export default function DemoViewer() {
                                 : "text-slate-600 dark:text-slate-300"
                             }`}
                           >
-                            {t(dish.name as any)}
+                            {t(dish.nameKey)}
                           </span>
                           <span
                             className={`text-[11px] tracking-widest font-medium ${
                               selected ? "text-[#FF6B00]" : "text-slate-400"
                             }`}
                           >
-                            {t(dish.categoryLabel as any)}
+                            {t(dish.categoryNameKey)}
                           </span>
                         </span>
                       </span>
@@ -154,7 +154,7 @@ export default function DemoViewer() {
                     <model-viewer
                       src={active.glb}
                       ios-src={active.usdz}
-                      alt={`${t(active.name as any)} 3D model`}
+                      alt={`${t(active.nameKey)} 3D model`}
                       camera-controls
                       auto-rotate
                       auto-rotate-delay="600"
@@ -209,15 +209,11 @@ export default function DemoViewer() {
                   exit={{ opacity: 0, y: -10 }}
                   transition={{ duration: 0.25 }}
                 >
-                  <span className="text-xs font-bold tracking-widest text-[#FF6B00]">
-                    {t(active.categoryLabel as any)}
-                  </span>
+                  <span className="text-xs font-bold tracking-widest text-[#FF6B00]">{t(active.categoryNameKey)}</span>
                   <h3 className="font-serif text-2xl font-bold text-slate-900 dark:text-slate-50 tracking-tight mt-1 leading-tight">
-                    {t(active.name as any)}
+                    {t(active.nameKey)}
                   </h3>
-                  <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed mt-3">
-                    {t(active.desc as any)}
-                  </p>
+                  <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed mt-3">{t(active.descKey)}</p>
 
                   {/* Price + Calories */}
                   <div className="flex flex-wrap items-center gap-3 mt-5">
@@ -255,7 +251,7 @@ export default function DemoViewer() {
         open={showArModal}
         onClose={() => setShowArModal(false)}
         url={buildArUrl(active.id)}
-        label={active.id.toUpperCase()}
+        label={t(active.nameKey)}
       />
     </section>
   );

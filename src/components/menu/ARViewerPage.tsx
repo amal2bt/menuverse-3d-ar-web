@@ -2,8 +2,11 @@ import { useEffect, useMemo } from "react";
 import { motion } from "framer-motion";
 import { ArrowLeft, Smartphone, Scan } from "lucide-react";
 import { getArModel } from "./menuModels";
+import { useLanguage } from "../../context/LanguageContext";
 
 export default function ARViewerPage() {
+  const { t, lang } = useLanguage();
+
   const model = useMemo(() => {
     if (typeof window === "undefined") return getArModel("pizza");
     const params = new URLSearchParams(window.location.search);
@@ -11,8 +14,8 @@ export default function ARViewerPage() {
   }, []);
 
   useEffect(() => {
-    document.title = `${model.name} · AR`;
-  }, [model.name]);
+    document.title = `${t(model.nameKey)} · AR`;
+  }, [t, model.nameKey, lang]);
 
   return (
     <div className="flex h-[100dvh] flex-col overflow-hidden bg-slate-950 text-white">
@@ -27,7 +30,7 @@ export default function ARViewerPage() {
 
         <div className="text-center">
           <span className="block text-[10px] font-bold uppercase tracking-[0.24em] text-[#FF6B00]">AR Viewer</span>
-          <span className="font-serif text-lg font-bold leading-tight">{model.name}</span>
+          <span className="font-serif text-lg font-bold leading-tight">{t(model.nameKey)}</span>
         </div>
 
         <span className="flex items-center gap-1.5 rounded-full border border-white/15 px-3.5 py-2 text-xs font-semibold text-slate-300">
@@ -54,7 +57,7 @@ export default function ARViewerPage() {
         <model-viewer
           src={model.glb}
           ios-src={model.usdz}
-          alt={`${model.name} AR model`}
+          alt={`${t(model.nameKey)} AR model`}
           camera-controls
           auto-rotate
           auto-rotate-delay="200"
