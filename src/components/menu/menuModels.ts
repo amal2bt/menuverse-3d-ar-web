@@ -62,7 +62,7 @@ export const AR_MODELS: ArModelConfig[] = [
     priceAED: "AED 245",
     calories: "610 kcal",
     glb: "/models/REALISTIC_SUSHI_AR4.glb",
-    usdz: "/models/REALISTIC_SUSHI_AR5.usdz",
+    usdz: "/models/REALISTIC_SUSHI_AR6.usdz",
     background: DEFAULT_BACKGROUND,
   },
   {
